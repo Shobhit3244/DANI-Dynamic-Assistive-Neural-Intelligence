@@ -24,18 +24,10 @@ import pygame
 dani = Assistant.AudioExchange()
 pygame.init()
 
+intro = VideoFileClip(r'Assets\Dani Intro.mp4')
 listening1 = VideoFileClip(r'Assets\Dani List 1.mp4')
 listening2 = pygame.image.load(r'Assets\Dani List 2.png')
 listening3 = VideoFileClip(r'Assets\Dani List 3.mp4')
-
-
-win = pygame.display.set_mode((256, 256))
-pygame.display.set_caption("DANI - Dynamic Assistive Neural Intelligence")
-programIcon = pygame.image.load(r'Assets\DANI Logo 2.ico')
-pygame.display.set_icon(programIcon)
-win.fill('black')
-win.blit(programIcon, (0, 0))
-pygame.display.update()
 
 
 def speak(text):
@@ -285,6 +277,18 @@ def pmusiconl():    # abhishek verma
 
 
 if __name__ == '__main__':
+
+    win = pygame.display.set_mode((256, 256))
+    pygame.display.set_caption("DANI")
+    programIcon = pygame.image.load(r'Assets\DANI Logo 2.ico')
+    pygame.display.set_icon(programIcon)
+    win.fill('black')
+    pygame.time.delay(1000)
+    intro.preview()
+    intro.close()
+    win.blit(programIcon, (0, 0))
+    pygame.display.update()
+
     try:
         with open("Config.conf", "rb") as rfile:
             data = pickle.load(rfile)
