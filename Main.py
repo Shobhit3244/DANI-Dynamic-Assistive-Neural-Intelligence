@@ -6,21 +6,71 @@ __version__ = "1.0"
 import googlesearch
 import Translator
 import Spk_Listen as Assistant
+import requests
+import webbrowser
+from moviepy.editor import *
+from tkinter.filedialog import askdirectory
 # import Replies as Reply
 import Calc
 from datetime import datetime
+import sys
 import os
 import fnmatch
 import random
 import pyjokes
 import pickle
+import pygame
 
 dani = Assistant.AudioExchange()
+pygame.init()
+
+listening1 = VideoFileClip(r'Assets\Dani List 1.mp4')
+listening2 = pygame.image.load(r'Assets\Dani List 2.png')
+listening3 = VideoFileClip(r'Assets\Dani List 3.mp4')
+
+
+win = pygame.display.set_mode((256, 256))
+pygame.display.set_caption("DANI - Dynamic Assistive Neural Intelligence")
+programIcon = pygame.image.load(r'Assets\DANI Logo 2.ico')
+pygame.display.set_icon(programIcon)
+win.fill('black')
+win.blit(programIcon, (0, 0))
+pygame.display.update()
+
+
+def speak(text):
+    dani.speak(text)
+
+
+def listen():
+    listening1.preview()
+    win.blit(listening2, (0, 0))
+    text = dani.listen()
+    listening3.preview()
+    win.blit(programIcon, (0, 0))
+    pygame.display.update()
+    print(text)
+    return text
 
 
 def setup():        # shobhit kundu
     pdata = {}
     d_list = ["username", "music_folder"]
+    speak("What should I call you?")
+    while True:
+        speak('Please Spell your name')
+        name = listen()
+        if name != "Nothing Recognisable":
+            print(name)
+            name = ''.join(name.replace(' ', ""))
+            speak("I'll Call you "+name)
+            speak("Is that correct?")
+            confirmation = listen()
+            if confirmation.lower() == 'yes':
+                pdata[d_list[0]] = name
+                break
+    speak("Can you select the music folder location through the popup window")
+    pdata[d_list[1]] = str(askdirectory())
     return pdata
 
 
@@ -145,7 +195,7 @@ def pmusicoffl(m_name):   # shobhit kundu
     :param m_name: Song name or path
     :return: None
     """
-    s_file = find_files(m_name, r"D:\Music")
+    s_file = find_files(m_name, data['music_folder'])
     r = 0
     if 'Nothing Found' not in s_file: 
         if len(s_file) > 1: 
@@ -199,8 +249,17 @@ def date_time(mode="None"):     # shobhit kundu
         return "{}: {}, {}-{}-{}".format(hour, minute, day, month, year)
 
 
-def net_available():
-    
+def open_url(url):     # shobhit kundu
+    webbrowser.open_new(url)
+    return
+
+
+def net_availability():     # shobhit kundu
+    try:
+        requests.request('str', url='https://www.google.com/')
+        return True
+    except:
+        return False
 
 
 def replies():      # shobhit kundu
@@ -211,7 +270,7 @@ def pyoutube():     # yash meshram
     pass
 
 
-def gsearch(query, count=10):      # abhishek verma
+def gsearch(query, count=10):      # shobhit kundu
     """
     :param query: name or item to search
     :param count: number of results wanted
@@ -229,12 +288,29 @@ if __name__ == '__main__':
     try:
         with open("Config.conf", "rb") as rfile:
             data = pickle.load(rfile)
-            if not data:
+            if not data or not data['username'] or not data['music_folder']:
                 raise ValueError("Nothing Found In File")
+            print(data)
+        print("Config Loaded Successfully")
 
     except:
         with open("Config.conf", "wb+") as nfile:
             data = setup()
             pickle.dump(data, nfile)
-        print("")
+        print("setup done")
 
+    run = True
+    while run:
+        pygame.time.delay(100)
+        for env in pygame.event.get():
+            if env.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if env.type == pygame.MOUSEBUTTONDOWN:
+                print(listen(), "mouse")
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_SPACE] or keys[pygame.MOUSEBUTTONDOWN]:
+            print(listen(), "space")
+    pygame.display.update()
