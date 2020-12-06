@@ -3,16 +3,6 @@ __copyright__ = "Copyright (C) 2020 Shobhit Kundu"
 __license__ = "Public Demo"
 __version__ = "1.0"
 
-import googlesearch
-import Translator
-import Spk_Listen as Assistant
-import requests
-import webbrowser
-from moviepy.editor import *
-from tkinter.filedialog import askdirectory
-# import Replies as Reply
-import Calc
-from datetime import datetime
 import sys
 import os
 import fnmatch
@@ -20,6 +10,17 @@ import random
 import pyjokes
 import pickle
 import pygame
+import googlesearch
+import Translator
+import Spk_Listen as Assistant
+import requests
+import webbrowser
+# import Replies as Reply
+import Calc
+from datetime import datetime
+from tkinter import *
+from moviepy.editor import *
+from tkinter.filedialog import askdirectory
 
 dani = Assistant.AudioExchange()
 pygame.init()
@@ -28,10 +29,20 @@ intro = VideoFileClip(r'Assets\Dani Intro.mp4')
 listening1 = VideoFileClip(r'Assets\Dani List 1.mp4')
 listening2 = pygame.image.load(r'Assets\Dani List 2.png')
 listening3 = VideoFileClip(r'Assets\Dani List 3.mp4')
+speaking1 = VideoFileClip(r'Assets\Dani Spk 1.mp4')
+speaking2 = pygame.image.load(r'Assets\Dani Spk 2.png')
+speaking3 = VideoFileClip(r'Assets\Dani Spk 3.mp4')
+exitmsg = VideoFileClip(r'Assets\Dani Exit.mp4')
 
 
 def speak(text):
+    speaking1.preview()
+    win.blit(speaking2, (0, 0))
     dani.speak(text)
+    speaking3.preview()
+    win.blit(programIcon, (0, 0))
+    pygame.display.update()
+    print("Dani:", text)
 
 
 def listen():
@@ -41,7 +52,7 @@ def listen():
     listening3.preview()
     win.blit(programIcon, (0, 0))
     pygame.display.update()
-    print(text)
+    print(f'{data["username"]}:', text)
     return text
 
 
@@ -62,8 +73,19 @@ def setup():        # shobhit kundu
                 pdata[d_list[0]] = name
                 break
     speak("Can you select the music folder location through the popup window")
+    root = Tk()
     pdata[d_list[1]] = str(askdirectory())
+    root.destroy()
     return pdata
+
+
+def ext():
+    speak("Are you Sure you want to Exit DANI, The Dynamic Assistive Neural Intelligence?")
+    ans = listen()
+    if ans == "yes":
+        exitmsg.preview()
+        pygame.quit()
+        sys.exit()
 
 
 def translate(text, tol="en", mode="trans"):    # shobhit kundu
@@ -308,8 +330,7 @@ if __name__ == '__main__':
         pygame.time.delay(100)
         for env in pygame.event.get():
             if env.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                ext()
 
             if env.type == pygame.MOUSEBUTTONDOWN:
                 print(listen(), "mouse")
