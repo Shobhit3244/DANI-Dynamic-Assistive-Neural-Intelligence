@@ -52,7 +52,10 @@ def listen():
     listening3.preview()
     win.blit(programIcon, (0, 0))
     pygame.display.update()
-    print(f'{data["username"]}:', text)
+    try:
+        print(f'{data["username"]}:', text)
+    except NameError:
+        print('user:', text)
     return text
 
 
