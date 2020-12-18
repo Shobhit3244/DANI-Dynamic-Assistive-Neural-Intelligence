@@ -5,6 +5,7 @@ __version__ = "1.0"
 
 import sys
 import os
+import json
 import fnmatch
 import random
 import pyjokes
@@ -15,7 +16,7 @@ import Translator
 import Spk_Listen as Assistant
 import requests
 import webbrowser
-# import Replies as Reply
+import Replies as Reply
 import Calc
 from datetime import datetime
 from tkinter import *
@@ -33,6 +34,13 @@ speaking1 = VideoFileClip(r'Assets\Dani Spk 1.mp4')
 speaking2 = pygame.image.load(r'Assets\Dani Spk 2.png')
 speaking3 = VideoFileClip(r'Assets\Dani Spk 3.mp4')
 exitmsg = VideoFileClip(r'Assets\Dani Exit.mp4')
+
+responses = {}
+
+with open('Assets/intents.json', 'r') as file:
+    rp_data = json.load(file)
+    for intent in rp_data['intents']:
+        responses[intent['tag']] = intent["responses"]
 
 
 def speak(text):
@@ -279,8 +287,27 @@ def net_availability():     # shobhit kundu
         return False
 
 
-def replies():      # shobhit kundu
-    pass
+def reply():      # shobhit kundu
+    text = listen()
+    actions = {'goodbye': ext,
+               'music': pmusicoffl,
+               'translate': translate,
+               'time': date_time,
+               'date': date_time,
+               'maths': math,
+               'tell-joke': joke,
+               'yt-video': pyoutube,
+               'google': gsearch,
+               'lang-detect': translate,
+               'file-search': find_files,
+               'open-webpage': open_url,
+               'connectivity-check': net_availability()}
+    rep = {'category': (Reply.reply(text))[0], 'ign_words': (Reply.reply(text))[1]}
+    if rep['category'] in ['devs', 'greeting', 'name']:
+        return random.choice(responses[rep['category']])
+    else:
+        callable(actions[rep['category']](i))
+        return None
 
 
 def pyoutube():     # yash meshram
@@ -328,17 +355,23 @@ if __name__ == '__main__':
             pickle.dump(data, nfile)
         print("setup done")
 
-    run = True
-    while run:
+    running = True
+    while running:
         pygame.time.delay(100)
         for env in pygame.event.get():
             if env.type == pygame.QUIT:
                 ext()
 
             if env.type == pygame.MOUSEBUTTONDOWN:
-                print(listen(), "mouse")
+                print("mouse")
+                rpl = reply()
+                speak(rpl)
+                print(rpl)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] or keys[pygame.MOUSEBUTTONDOWN]:
-            print(listen(), "space")
+            print("space")
+            rpl = reply()
+            speak(rpl)
+            print(rpl)
     pygame.display.update()

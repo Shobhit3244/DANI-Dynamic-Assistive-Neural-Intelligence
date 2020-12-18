@@ -1,0 +1,88 @@
+{"intents": [
+        {"tag": "greeting", 
+         "patterns": ["How are you?", "Is anyone there?", "How was your day", "are you fine?", 
+           "Hi", "Hello", "Hey", "What's up"],
+         "responses": ["Hello!, I am fine", "Yes, All good!", "Hi there, I'm good", "Hello!", 
+           "Good to see you again!", "Hi there", "All good?", "Hey", "Nice to meet you"], 
+         "context_set": ""
+        }, 
+        {"tag": "goodbye", 
+         "patterns": ["bye", "See you later", "Goodbye", "I am Leaving", "Have a Good day"], 
+         "responses": ["Have a nice day", "Talk to you later", "Goodbye!"], 
+         "context_set": ""
+        }, 
+        {"tag": "name", 
+         "patterns": ["what is your name", "what should I call you", "what's your name?"], 
+         "responses": ["You can call me Dani.", "I'm Dani!", "I'm Dani aka Your assistant."], 
+         "context_set": ""
+        }, 
+        {"tag": "music", 
+         "patterns": ["play me something", "play music", "Calm me", "music", "song", "play {} offline", 
+           "play {} local", "play"],
+         "responses": ["Okay, here are some tracks you would like", "Playing some music"], 
+         "context_set": ""
+        }, 
+        {"tag": "translate", 
+         "patterns": ["translate {} to {}", "what do we say {} in {}", "translate"], 
+         "responses": ["okay"], 
+         "context_set": ""
+        }, 
+        {"tag": "time", 
+         "patterns": ["what's the time", "tell me time", "time"], 
+         "responses": ["the time is {}", "its {}"], 
+         "context_set": ""
+        }, 
+        {"tag": "date", 
+         "patterns": ["what is today's date", "what is today", "today's date", "date"], 
+         "responses": ["today's date is {}", "it's {}"], 
+         "context_set": ""
+        }, 
+        {"tag": "maths", 
+         "patterns": ["Calculate", "what is {} into {}", "{} times {}", "multiply {} {}", 
+           "what is {} by {}", "{} by {}", "divide {} by {}", "what is {} plus {}", "{} with {}", 
+           "add", "join {} and {}", "what is {} minus {}", "{} without {}", "substract {} from {}", "minus"], 
+         "responses": ["The product of {} and {} is {}", "{} times {} is {}"], 
+         "context_set": ""
+        }, 
+        {"tag": "tell-joke", 
+         "patterns": ["make me laugh", "tell me a joke", "joke please", "joke"], 
+         "responses": ["telling Joke"], 
+         "context_set": ""
+        }, 
+        {"tag": "yt-video", 
+         "patterns": ["play {} on youtube", "video", "youtube"], 
+         "responses": ["playing {} video on youtube"], 
+         "context_set": ""
+        }, 
+        {"tag": "google", 
+         "patterns": ["search", "google", "what is {}", "who is {}", "where is {}", "when"],
+         "responses": ["Searching."], 
+         "context_set": ""
+        }, 
+        {"tag": "lang-detect", 
+         "patterns": ["what is this language", "detect this language", "what language is this", "detect language"],
+         "responses": ["detecting language."],
+         "context_set": ""
+        }, 
+        {"tag": "devs", 
+         "patterns": ["who made you", "who are your coders", "who are your developers", "who designed you"],
+         "responses": ["I was made by shobhit kundu", "Created by Shobhit kundu with assistanve of yash meshram and abhihek verma"],
+         "context_set": ""
+        },
+        {"tag": "file-search",
+         "patterns": ["find {}", "where is {}", "search file"],
+         "responses": ["Searching."], 
+         "context_set": ""
+        }, 
+        {"tag": "open-webpage", 
+         "patterns": ["open {} on chrome", "show me this site", "visit it", "show me", "open this site"],
+         "responses": ["Okay"],
+         "context_set": ""
+        }, 
+        {"tag": "connectivity-check", 
+         "patterns": ["am i connected to the internet", "check connectivity", "is net connected", "am i connected", "am i on network"],
+         "responses": ["checking."],
+         "context_set": ""
+        }
+   ]
+}
