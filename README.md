@@ -3,6 +3,12 @@ A machine learning based Desktop assistand operated on voice command
 
 More features are being added over time to make more use of the available resources
 
+The Exe Installer file for this project can be downloaded from this link: https://www.mediafire.com/file/7f6wl3d3w2oxzjp/DANI.exe/file
+or Zip File Here: https://www.mediafire.com/file/sccogx7fu0qjvl2/Dani.zip/file
+for non Admin users.
+
+Currently Mac and linux Support has not been tested for the program compatability.
+
 As it is an open source project if you want to download the code and 
 edit it for yourself un "pip install -r requirements.txt" in the command prompt
 by navigating to the containing folder or setting path before
@@ -11,4 +17,5 @@ beforehand to install the required libraries.
 Or open the console in the same folder by pressing shift+right
 click and selecting "open powershell here"
 
-pyinstaller "E:/Python Projects/DANI Test/Main.py" --noconfirm --onefile --console --icon "E:/Python Projects/DANI Test/Assets/DANI Logo 2.ico" --name "DANI" --clean --add-data "E:/Python Projects/DANI Test/Calc.py;." --add-data "E:/Python Projects/DANI Test/Replies.py;." --add-data "E:/Python Projects/DANI Test/Spk_Listen.py;." --add-data "E:/Python Projects/DANI Test/Assets;Assets/" --hidden-import "pyttsx3.drivers.sapi5"
+Additional Modules which usually generates error while installation are included as
+whl files in the Imp Modules Folder. Be sure to install those Modules Before Hand to avoid any Errors
