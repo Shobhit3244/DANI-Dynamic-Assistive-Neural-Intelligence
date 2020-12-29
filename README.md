@@ -3,8 +3,9 @@ A machine learning based Desktop assistand operated on voice command
 
 More features are being added over time to make more use of the available resources
 
-The Exe Installer file for this project can be downloaded from this link: https://www.mediafire.com/file/7f6wl3d3w2oxzjp/DANI.exe/file
-or Zip File Here: https://www.mediafire.com/file/sccogx7fu0qjvl2/Dani.zip/file
+The Exe Installer file for this project can be downloaded
+from this link: https://www.mediafire.com/file/7f6wl3d3w2oxzjp/DANI.exe/file
+or Zip File from here: https://www.mediafire.com/file/sccogx7fu0qjvl2/Dani.zip/file
 for non Admin users.
 
 Currently Mac and linux Support has not been tested for the program compatability.
