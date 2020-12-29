@@ -12,7 +12,7 @@ MicInp = vr.Recognizer()
 
 
 class AudioExchange:
-    def __init__(self, name=None, voice_threshold=500, min_phase=0.2, word_break=0.5, assist_gender=1, hfxtra=0):
+    def __init__(self, name=None, voice_threshold=500, min_phase=0.1, word_break=0.75, assist_gender=1, hfxtra=0):
         self.name = name
         self.voice_th = voice_threshold
         self.breadth_delay = word_break
