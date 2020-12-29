@@ -4,7 +4,7 @@ __license__ = "Public Demo"
 __version__ = "1.0"
 
 
-from tensorflow import keras
+from tensorflow.keras.models import load_model
 import nltk
 from nltk.stem import LancasterStemmer
 import pickle
@@ -18,7 +18,7 @@ with open('Assets/wd_lbl.txt', 'rb') as file:
         raise EOFError
     if not labels:
         raise EOFError
-model = keras.models.load_model("Assets/chatbot.h5")
+model = load_model("Assets/chatbot.h5")
 print(model.summary())
 
 
