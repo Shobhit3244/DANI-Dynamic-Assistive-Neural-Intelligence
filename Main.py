@@ -15,14 +15,12 @@ import pickle
 import pygame
 import pyjokes
 import random
-import re
 import Replies as Reply
 import requests
 import Spk_Listen as Assistant
 import sys
 from tkinter import *
 from tkinter.filedialog import askdirectory
-import Translator
 import webbrowser
 
 dani = Assistant.AudioExchange()
