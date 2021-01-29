@@ -13,7 +13,7 @@
      {"tag": "music",
       "patterns": ["play me something", "play music", "Calm me", "music", "song",
         "play {} offline", "play {} local", "play"],
-      "responses": ["Okay, here are some tracks you would like", "Playing some music"],
+      "responses": ["Okay", "here are some tracks you would like", "Playing some music"],
       "context_set": ""
      },
      {"tag": "time",
@@ -73,7 +73,7 @@
      },
      {"tag": "joke",
       "patterns": ["tell me a joke", "joke", "be funny", "make me laugh", "joke please"],
-      "responses": "",
+      "responses": ["Here's One", "Sure"],
       "context_set": ""
      },
      {"tag": "weather",

@@ -18,6 +18,7 @@ import random
 import Replies as Reply
 import requests
 import Spk_Listen as Assistant
+import pywhatkit as kit
 import sys
 from tkinter import *
 from tkinter.filedialog import askdirectory
@@ -270,8 +271,8 @@ def net_availability():  # shobhit kundu
         return False
 
 
-def pyoutube():  # yash meshram
-    pass
+def pyoutube(m_name):  # yash meshram
+    kit.playonyt(m_name)
 
 
 def gsearch(query, count=10):  # shobhit kundu
@@ -285,7 +286,7 @@ def gsearch(query, count=10):  # shobhit kundu
 
 
 def pmusiconl(m_name):  # abhishek verma
-    pass
+    kit.playonyt(m_name)
 
 
 def wiki(query):
@@ -348,6 +349,7 @@ def reply():  # shobhit kundu
 
         elif rep['category'] == 'music':
             callable(actions[rep['category']](' '.join(tmp)))
+            replies = random.choice(responses[rep['category']])
 
         elif rep['category'] == 'time':
             return date_time("time")
@@ -360,16 +362,17 @@ def reply():  # shobhit kundu
             print(replies)
 
         elif rep['category'] == 'joke':
-            return joke('all')
+            return random.choice(responses[rep['category']]) + joke('all')
 
         elif rep['category'] == 'yt-video':
             if not net_availability():
                 return "Sorry, You're not Connected to the internet"
-            pass
+            replies = random.choice(responses[rep['category']])
 
         elif rep['category'] == 'google':
             if not net_availability():
                 return "Sorry, You're not Connected to the internet"
+            speak(random.choice(responses[rep['category']]))
             searches = gsearch(" ".join(tmp))
             try:
                 text, link = wiki(" ".join(tmp))
@@ -392,9 +395,11 @@ def reply():  # shobhit kundu
         elif rep['category'] == 'open-webpage':
             if not net_availability():
                 return "Sorry, You're not Connected to the internet"
+            replies = random.choice(responses[rep['category']])
             open_url(tmp[0])
 
         elif rep['category'] == 'connectivity-check':
+
             if net_availability():
                 replies = "You're Connected to the internet"
             else:
@@ -442,13 +447,11 @@ if __name__ == '__main__':
                 print("mouse")
                 rpl = reply()
                 speak(rpl)
-                print(rpl)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] or keys[pygame.MOUSEBUTTONDOWN]:
             print("space")
             rpl = reply()
             speak(rpl)
-            print(rpl)
 
     pygame.display.update()
