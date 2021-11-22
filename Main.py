@@ -272,7 +272,7 @@ def net_availability():  # shobhit kundu
 
 
 def pyoutube(m_name):  # yash meshram
-    kit.playonyt(m_name)
+    open_url(f"https://www.youtube.com/results?search_query={m_name}")
 
 
 def gsearch(query, count=10):  # shobhit kundu
@@ -368,6 +368,7 @@ def reply():  # shobhit kundu
             if not net_availability():
                 return "Sorry, You're not Connected to the internet"
             replies = random.choice(responses[rep['category']])
+            pyoutube("%20".join(tmp))
 
         elif rep['category'] == 'google':
             if not net_availability():

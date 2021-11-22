@@ -51,3 +51,7 @@ class AudioExchange:
         except Exception:
             statement = "Nothing Recognisable"
         return statement
+
+"""apple = AudioExchange()
+tmp = apple.listen()
+apple.speak(tmp)"""
